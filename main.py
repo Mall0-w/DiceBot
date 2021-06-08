@@ -1,12 +1,12 @@
-import discord.py
+import discord
 import os
-import Dice
+import messageHandler
 
 client = discord.Client()
 
 @client.event
 async def on_ready():
-    print("Hi there! Im tallyBot, you can learn more about me by using $thelp")
+    print("Hello World!")
 
 
 @client.event
@@ -18,7 +18,10 @@ async def on_message(message):
   if message.content.startswith('$t'):
     await message.channel.send("Hello world!")
   '''
-    if (message.content.startswith("/test")):
-        await message.channel.send("this is a test")
+    temp = messageHandler.messageHandler(message.content)
+    if temp != None:
+      await message.channel.send(temp)
+    
+
 
 client.run(os.getenv('Token'))

@@ -52,7 +52,6 @@ class character:
     return
   def setConstitution(self, num):
     self.Con = num
-    updateHp(self)
     return
   def setWisdom(self, num):
     self.Wis = num

@@ -10,11 +10,23 @@ def messageHandler(message):
 '''
 #given a number of dice (int) and how many faces (int) will sum num rolls of dice
 def diceRoller(number, size):
-  dNum = abs(number)
-  dSize = abs(size)
+  print(number)
+  print(size)
+  try:
+    dNum = int(number)
+  except:
+    return "I can't do this; " + number + " is not a number"
+  dNum = abs(dNum)
+  try:
+    dSize = int(size)
+  except:
+    return "I can't do this; " + size + " is not a number"
+  dSize = abs(dSize)
   
   sum = 0
-  for i in range(dNum):
+  print(dNum)
+  print(dSize)
+  for i in range(0,dNum):
     sum += random.randint(1,dSize)
   
   return str(sum)
