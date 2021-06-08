@@ -39,13 +39,13 @@ def statRoller():
     lowest = 0
     # roll 4d6
     for j in range(0, 4):
-      tempRoll = diceRoller("1","6")
+      tempRoll = int(diceRoller("1","6"))
       if lowest == 0 or tempRoll < lowest:
         tempSum += lowest
         lowest = tempRoll
       else:
         tempSum += tempRoll
-    startArr.append(tempSum)
+    startArr.append(str(tempSum))
   
   return str(startArr)
 
