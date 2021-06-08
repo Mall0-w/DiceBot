@@ -10,8 +10,6 @@ def messageHandler(message):
 '''
 #given a number of dice (int) and how many faces (int) will sum num rolls of dice
 def diceRoller(number, size):
-  print(number)
-  print(size)
   try:
     dNum = int(number)
   except:
@@ -24,8 +22,6 @@ def diceRoller(number, size):
   dSize = abs(dSize)
   
   sum = 0
-  print(dNum)
-  print(dSize)
   for i in range(0,dNum):
     sum += random.randint(1,dSize)
   
@@ -48,4 +44,18 @@ def statRoller():
     startArr.append(str(tempSum))
   
   return str(startArr)
+
+def cocStatRoller():
+  statArr = [[],[]]
+  #number of stats = 2d6+6
+  for i in range (3):
+    statArr[0].append((int(diceRoller("2","6")) + 6)*5)
+  
+  for j in range(6):
+    statArr[1].append(int(diceRoller("3","6"))*5)
+  
+  return statArr
+  
+    
+
 

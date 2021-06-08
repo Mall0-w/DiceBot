@@ -1,5 +1,5 @@
 import Dice
-import characterSheet
+import characterSheetDND
 
 def messageHandler(message):
   if(message.startswith("/roll")):
@@ -11,6 +11,9 @@ def messageHandler(message):
   
   elif(message.startswith("/statroll")):
     return Dice.statRoller()
+  
+  elif(message.startswith("/cocstatroll")):
+    return Dice.cocStatRoller()
   
   return None
     
