@@ -13,11 +13,7 @@ async def on_ready():
 async def on_message(message):
     if message.author == client.user:
         return
-    #await message.channel.send()
-    ''''
-  if message.content.startswith('$t'):
-    await message.channel.send("Hello world!")
-  '''
+    
     temp = messageHandler.messageHandler(message.content)
     if temp != None:
       await message.channel.send(temp)
