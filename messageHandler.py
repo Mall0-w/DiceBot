@@ -36,7 +36,9 @@ def messageHandler(message):
     temp = cocCharacterSheet.characterSheet(newMessage[1])
     if message.author not in playerCharSheets:
       playerCharSheets[message.author]= {}
-      playerCharSheets[message.author][temp.name] = temp
+    if temp.name in playerCharSheets[message.author]:
+      return "You already have a character sheet named " + temp.name
+    playerCharSheets[message.author][temp.name] = temp
     return str(temp)
   
   #TODO: need to find a way to store user char sheets and check if one exists
