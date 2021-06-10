@@ -7,8 +7,10 @@ class characterSheet:
     self.updateHP()
     self.updateDBandBuild()
     self.updateMov()
+    self.updateMP()
     self.san = self.statDict["POW"]
     self.age = 20
+    
 
   def __str__(self):
     return self.printCharSheet()
@@ -18,7 +20,7 @@ class characterSheet:
 
   def printCharSheet(self):
     return ("Name: " + self.name + " Age: " + str(self.age) + "\n"+ str(self.statDict) 
-    +"\n" + "Hp: " + str(self.hp) + "  San: " + str(self.san)
+    +"\n" + "Hp: " + str(self.hp) + "  San: " + str(self.san) + "Mp: " + str(self.mp)
     +"\n" + "Mov: " + str(self.mov) + "  DB: " + str(self.db) + " Build:  " + str(self.build) )
   
   def updateMov(self):
@@ -32,9 +34,12 @@ class characterSheet:
 
 
   def updateHP(self):
-    self.hp = (self.statDict["SIZ"] + self.statDict["CON"]) / 10
+    self.hp = (self.statDict["SIZ"] + self.statDict["CON"]) // 10
     return
   
+  def updateMP(self):
+    self.mp = self.statDict["POW"] // 5
+
   def updateDBandBuild(self):
     temp = (self.statDict["SIZ"] + self.statDict["STR"])
     if temp <= 64:
@@ -64,5 +69,9 @@ class characterSheet:
       return "Amount must be less than 100"
     
     self.statDict[statName.upper()] = amt
+    self.updateDBandBuild()
+    self.updateHP()
+    self.updateMov()
+    self.updateMP()
     return statName.upper() + " is now set to " + str(amt)
 
