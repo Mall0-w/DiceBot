@@ -54,7 +54,8 @@ def messageHandler(message):
   elif(messageContents.startswith("/showactive")):
     if message.author not in activeCharSheets:
       return "you have no active character sheet"
-    return "Your active character is: " + activeCharSheets[message.author]
+    return ("Your active character is: " + activeCharSheets[message.author] + "\n" 
+    + str(playerCharSheets[message.author][activeCharSheets[message.author]]))
   
   elif(messageContents.startswith("/changeactive")):
     if message.author not in playerCharSheets:
