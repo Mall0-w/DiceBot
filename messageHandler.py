@@ -1,4 +1,5 @@
 import Dice
+import cocCharacterSheet
 
 def messageHandler(message):
   if(message.startswith("/roll")):
@@ -13,6 +14,13 @@ def messageHandler(message):
   
   elif(message.startswith("/cocstatroll")):
     return Dice.cocStatRoller()
+  
+  elif(message.startswith("/coccreate")):
+    newMessage = message.split(" ")
+    if(len(newMessage) < 2):
+      return "I need a name for your sheet"
+    temp = cocCharacterSheet.characterSheet(newMessage[1])
+    return temp.printCharSheet()
   
   return None
     
