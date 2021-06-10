@@ -10,6 +10,12 @@ class characterSheet:
     self.san = self.statDict["Pow"]
     self.age = 20
 
+  def __str__(self):
+    return self.printCharSheet()
+  
+  def __repr__(self):
+    return self.name
+
   def printCharSheet(self):
     return ("Name: " + self.name + " Age: " + str(self.age) + "\n"+ str(self.statDict) 
     +"\n" + "Hp: " + str(self.hp) + "  San: " + str(self.san)
@@ -42,3 +48,21 @@ class characterSheet:
     else:
       self.db, self.build = "1d6", 2
     return
+
+  def setStat(self, statName, statVal):
+    if statName not in self.statDict:
+      return (statName + " is not a valid stat. Please choose a stat from the following:\n" +
+              str(self.statDict.items()))
+    
+    try:
+      amt = int(statVal)
+      amt = abs(amt)
+    except:
+      return amt + " is not a valid number"
+    
+    if amt > 100:
+      return "Amount must be less than 100"
+    
+    self.statDict[statName] = amt
+    return statName + " is now set to " + amt
+

@@ -18,7 +18,7 @@ async def on_message(message):
   if message.content.startswith('$t'):
     await message.channel.send("Hello world!")
   '''
-    temp = messageHandler.messageHandler(message.content)
+    temp = messageHandler.messageHandler(message)
     if temp != None:
       await message.channel.send(temp)
     

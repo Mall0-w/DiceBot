@@ -22,10 +22,12 @@ def diceRoller(number, size):
   dSize = abs(dSize)
   
   sum = 0
+  allRolls = []
   for i in range(0,dNum):
-    sum += random.randint(1,dSize)
+    allRolls.append(random.randint(1,dSize))
+    sum+= allRolls[i]
   
-  return str(sum)
+  return str(allRolls) + "\n" +str(sum)
 
 def statRoller():
   startArr = []
