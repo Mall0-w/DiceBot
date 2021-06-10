@@ -1,8 +1,15 @@
 import occupations
-from cocSkillSheet import cocSkillSheet
+
+
+
 class cocSheet:
-  def __init__(self, charName = "", occupation = occupations.Occupation()):
+  def __init__(self, charName = ""):
+    
+    #TODO: reserve setting occpoints and hobbyPoints for when stats are set
+
     #set occupation?
+    #Init with stat array makes most sense
+    #need to figure out how to init occ given name of occ
     self.name = charName
     self.Str = 0
     self.Dex = 0
@@ -15,9 +22,9 @@ class cocSheet:
     self.Luc = 0
     self.Edu = 0
     self.Hp = 0
-
-    self.occPoints = occupation.getOccPoints
-    self.skillSheet = cocSkillSheet()
+    #TODO: need to do something if occupation DNE
+    self.occupation = None
+    self.occPoints = 0
     self.hobbyPoints = 0
 
     self.updateHobby()
@@ -25,6 +32,16 @@ class cocSheet:
     self.updateMP()
     self.updateSan()
   
+  def setOcc(self, occ = "Antiquarian"):
+    temp = occupations.addOcc(occ)
+    if temp == None:
+      return occ + " is an invalid occupation"
+    self.occupation = temp
+    
+    self.occPoints = self.occupation.occPoints
+    return "Occupation set to " + occ
+
+
   #statArr should be in format of [[Siz, Edu, int], [Str, Con, Dex, App, Pow, Luck]]
   def updateStatArr(self):
     self.statArr = [[self.Siz, self.Edu, self.Int], [self.Str, self.Con, self.Dex, self.App, self.Pow, self.Luc]]
@@ -38,15 +55,9 @@ class cocSheet:
     self.MP = self.Pow / 5
     return
   
-  def getMP(self):
-    return self.MP
-  
   def updateSan(self):
     self.san = self.Pow
     return
-  
-  def getSan(self):
-    return self.san
 
    #statArr should be in format of [[Siz, Edu, int], [Str, Con, Dex, App, Pow, Luck]]
   def setStats(self, statArr):
@@ -64,14 +75,11 @@ class cocSheet:
     self.updateStatArr()
     return
   
-  def getStats(self):
-    return self.statArr
   
   def updateHobby(self):
     self.hobbyPoints = self.Int * 2
   
-  def getHobby(self):
-    return self.hobbyPoints
+  
   
   
   

@@ -1,6 +1,11 @@
 from cocCharSheet import cocSheet
-class cocSkillSheet:
+
+#TODO: ensure charSheet has an occupation before buying skills
+
+class skillSheet:
   def __init__(self, charSheet = cocSheet()):
+
+    #Note need to implement wildcards for skills such as fighting, art, science, etc.
     self.SkillMap = {}
     self.SkillMap["Accounting"]= 5
     self.SkillMap["Anthropology"] = 1
@@ -11,8 +16,8 @@ class cocSkillSheet:
     self.SkillMap["Climb"] = 20
     
     
-    self.SkillMap["Credit Rating"] = charSheet.occupation.getMinCR()
-    charSheet.occPoints -= charSheet.occupation.getMinCR()
+    self.SkillMap["Credit Rating"] = charSheet.occupation.minCR()
+    charSheet.occPoints -= charSheet.occupation.minCR()
 
     self.SkillMap["Cthulhu Mythos"] = 0
     self.SkillMap["Disguise"] = 5
@@ -55,6 +60,8 @@ class cocSkillSheet:
     self.SkillMap["Throw"] = 20
     self.SkillMap["Track"] = 10
 
+
+  #NOTE :SHOULD ADD CHECK TO ENSURE NOT GOING OVER MAX CR
   def buyHobbySkill(self, skill, amt):
     if skill == "Cthulhu Mythos":
       return "A lowly mortal cannot learn about the unseen as a hobby"
@@ -88,6 +95,6 @@ class cocSkillSheet:
     return str(amt) + " Occupational points spent! Your remaining balance is: " + self.charSheet.occPoints + "\n" + skill + " is now at " + self.SkillMap[skill] 
 
   #TODO: improvement rolls, coc improvement, undoing bought points
-    
+  #NOTE TO SELF: think of replacing wild card with their choice in their skill arr ex replacing other with psychology
 
     

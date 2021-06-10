@@ -1,5 +1,4 @@
 import Dice
-import characterSheetDND
 
 def messageHandler(message):
   if(message.startswith("/roll")):
