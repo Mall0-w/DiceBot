@@ -66,8 +66,17 @@ def messageHandler(message):
       activeCharSheets[message.author] =  playerCharSheets[message.author][newMessage[1]].name
       return  activeCharSheets[message.author] + " is now your active character sheet"
     return "You don't own a character sheet by the name of " + newMessage[1]
-  #TODO: need to find a way to store user char sheets and check if one exists
-  #elif(message.startswith("/cocstatset")):
+  
+  elif(messageContents.startswith("/cocstatset")):
+    if message.author not in activeCharSheets or activeCharSheets[message.author] == None:
+      return "You need an active character sheet to use this command"
+    if(len(newMessage) < 3):
+      return "I need a stat name and amount"
+    
+    temp = playerCharSheets[message.author][activeCharSheets[message.author]].setStat(newMessage[1],newMessage[2])
+    print(playerCharSheets[message.author][activeCharSheets[message.author]])
+    return temp
+
 
   
   return None

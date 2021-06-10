@@ -2,12 +2,12 @@ class characterSheet:
   #TODO: add stat modifications for age
   def __init__(self, name):
     self.name = name
-    self.statDict = {"Str" : 50, "Dex" : 50, "Pow" : 50, "Con" : 50, "App" :50, "Edu" : 50, "Siz" : 50,"Int" : 50, "Luck" : 50}
+    self.statDict = {"STR" : 50, "DEX" : 50, "POW" : 50, "CON" : 50, "APP" :50, "EDU" : 50, "SIZ" : 50,"INT" : 50, "Luck" : 50}
 
     self.updateHP()
     self.updateDBandBuild()
     self.updateMov()
-    self.san = self.statDict["Pow"]
+    self.san = self.statDict["POW"]
     self.age = 20
 
   def __str__(self):
@@ -22,9 +22,9 @@ class characterSheet:
     +"\n" + "Mov: " + str(self.mov) + "  DB: " + str(self.db) + " Build:  " + str(self.build) )
   
   def updateMov(self):
-    if self.statDict["Dex"] < self.statDict["Siz"] and self.statDict["Str"] < self.statDict["Siz"]:
+    if self.statDict["DEX"] < self.statDict["SIZ"] and self.statDict["STR"] < self.statDict["SIZ"]:
       self.mov = 7
-    elif self.statDict["Dex"] >= self.statDict["Siz"] and self.statDict["Str"] >= self.statDict["Siz"]:
+    elif self.statDict["DEX"] >= self.statDict["SIZ"] and self.statDict["STR"] >= self.statDict["SIZ"]:
       self.mov = 9
     else:
       self.mov = 8
@@ -32,11 +32,11 @@ class characterSheet:
 
 
   def updateHP(self):
-    self.hp = (self.statDict["Siz"] + self.statDict["Con"]) / 10
+    self.hp = (self.statDict["SIZ"] + self.statDict["CON"]) / 10
     return
   
   def updateDBandBuild(self):
-    temp = (self.statDict["Siz"] + self.statDict["Str"])
+    temp = (self.statDict["SIZ"] + self.statDict["STR"])
     if temp <= 64:
       self.db, self.build = -2,-2
     elif 64 < temp <= 84:
@@ -50,7 +50,7 @@ class characterSheet:
     return
 
   def setStat(self, statName, statVal):
-    if statName not in self.statDict:
+    if statName.upper() not in self.statDict:
       return (statName + " is not a valid stat. Please choose a stat from the following:\n" +
               str(self.statDict.items()))
     
@@ -63,6 +63,6 @@ class characterSheet:
     if amt > 100:
       return "Amount must be less than 100"
     
-    self.statDict[statName] = amt
-    return statName + " is now set to " + amt
+    self.statDict[statName.upper()] = amt
+    return statName.upper() + " is now set to " + str(amt)
 
