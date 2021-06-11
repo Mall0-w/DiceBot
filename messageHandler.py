@@ -4,7 +4,7 @@ import cocCharacterSheet
 playerCharSheets = {}
 activeCharSheets = {}
 
-#TODO: help function which explains how each command works and also name > stats > occupation > skills
+#TODO: help function which explains how each command works and also name > stats > age > occupation > skills
 
 #implement command to improve cuthulhu mythos
 

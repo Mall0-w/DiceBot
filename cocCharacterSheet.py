@@ -4,11 +4,11 @@ class characterSheet:
   #TODO: add occupations
   #TODO: add handling of wildcard skills and subskills like art(acting)
   #implement checking skills (to later roll improvement)
-  #make choosing occupation easier on user by messing with the cases of string
   #implement improvement rolls
   #TODO: add the undoing of skill purchases
   #implement showing min and max cr
   #implement way to improve cthulhu mythos
+  #implement way of showing all occupations and their stats
   def __init__(self, name):
     self.name = name
     self.statDict = {"Str" : 50, "Dex" : 50, "Pow" : 50, "Con" : 50, "App" :50, "Edu" : 50, "Siz" : 50,"Int" : 50, "Luck" : 50}
