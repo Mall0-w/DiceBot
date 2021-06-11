@@ -6,6 +6,8 @@ activeCharSheets = {}
 
 #TODO: help function which explains how each command works and also name > stats > occupation > skills
 
+#implement command to improve cuthulhu mythos
+
 def messageHandler(message):
   #passed message getting its contents (string version)
   messageContents = message.content
