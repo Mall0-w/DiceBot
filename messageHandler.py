@@ -73,11 +73,31 @@ def messageHandler(message):
     if(len(newMessage) < 3):
       return "I need a stat name and amount"
     
-    temp = playerCharSheets[message.author][activeCharSheets[message.author]].setStat(newMessage[1],newMessage[2])
-    print(playerCharSheets[message.author][activeCharSheets[message.author]])
-    return temp
+    return playerCharSheets[message.author][activeCharSheets[message.author]].setStat(newMessage[1],newMessage[2])
 
-
+  elif(messageContents.startswith("/cocsetocc")):
+    if message.author not in activeCharSheets or activeCharSheets[message.author] == None:
+      return "You need an active character sheet to use this command"
+    if len(newMessage) < 2:
+      return "I need an occupation name"
+    return playerCharSheets[message.author][activeCharSheets[message.author]].setOcc(newMessage[1])
+  
+  elif(messageContents.startswith("/showoccpoints")):
+    if message.author not in activeCharSheets or activeCharSheets[message.author] == None:
+      return "You need an active character sheet to use this command"
+    return playerCharSheets[message.author][activeCharSheets[message.author]].showOccPoints()
+  
+  elif(messageContents.startswith("/showoccskills")):
+    if message.author not in activeCharSheets or activeCharSheets[message.author] == None:
+      return "You need an active character sheet to use this command"
+    return playerCharSheets[message.author][activeCharSheets[message.author]].showOccSkills()
+  
+  elif(messageContents.startswith("/buyoccskill")):
+    if message.author not in activeCharSheets or activeCharSheets[message.author] == None:
+      return "You need an active character sheet to use this command"
+    if len(newMessage) < 3:
+      return "I need a skill ant the amount of points you want to put into it"
+    return playerCharSheets[message.author][activeCharSheets[message.author]].buyOccSkill(newMessage[1], newMessage[2])
   
   return None
     
