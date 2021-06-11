@@ -4,6 +4,8 @@ import cocCharacterSheet
 playerCharSheets = {}
 activeCharSheets = {}
 
+#TODO: help function which explains how each command works and also name > stats > occupation > skills
+
 def messageHandler(message):
   #passed message getting its contents (string version)
   messageContents = message.content
@@ -67,7 +69,7 @@ def messageHandler(message):
       return  activeCharSheets[message.author] + " is now your active character sheet"
     return "You don't own a character sheet by the name of " + newMessage[1]
   
-  elif(messageContents.startswith("/cocstatset")):
+  elif(messageContents.startswith("/cocsetstat")):
     if message.author not in activeCharSheets or activeCharSheets[message.author] == None:
       return "You need an active character sheet to use this command"
     if(len(newMessage) < 3):
@@ -98,6 +100,19 @@ def messageHandler(message):
     if len(newMessage) < 3:
       return "I need a skill ant the amount of points you want to put into it"
     return playerCharSheets[message.author][activeCharSheets[message.author]].buyOccSkill(newMessage[1], newMessage[2])
+  
+  elif(messageContents.startswith("/showhobbypoints")):
+    if message.author not in activeCharSheets or activeCharSheets[message.author] == None:
+      return "You need an active character sheet to use this command"
+    return playerCharSheets[message.author][activeCharSheets[message.author]].showHobbyPoints()
+  
+  elif(messageContents.startswith("/buyhobbyskill")):
+    if message.author not in activeCharSheets or activeCharSheets[message.author] == None:
+      return "You need an active character sheet to use this command"
+    if len(newMessage) < 3:
+      return "I need a skill ant the amount of points you want to put into it"
+    return playerCharSheets[message.author][activeCharSheets[message.author]].buyHobbySkill(newMessage[1], newMessage[2])
+    
   
   return None
     

@@ -2,11 +2,11 @@ from occupations import strToOcc
 class characterSheet:
   #TODO: add stat modifications for age
   #TODO: add occupations
-  #TODO: add skills
-  #TODO: add wildcard skills and subskills like art(acting)
+  #TODO: add handling of wildcard skills and subskills like art(acting)
   #implement checking skills (to later roll improvement)
-  #make choosing class easier on user by messing with the cases
+  #make choosing occupation easier on user by messing with the cases of string
   #implement improvement rolls
+  #TODO: add the undoing of skill purchases
   def __init__(self, name):
     self.name = name
     self.statDict = {"STR" : 50, "DEX" : 50, "POW" : 50, "CON" : 50, "APP" :50, "EDU" : 50, "SIZ" : 50,"INT" : 50, "Luck" : 50}
@@ -15,6 +15,7 @@ class characterSheet:
     self.updateDBandBuild()
     self.updateMov()
     self.updateMP()
+    self.updateHobby()
     self.san = self.statDict["POW"]
     self.age = 20
     self.occupation = None
@@ -65,6 +66,13 @@ class characterSheet:
       self.db, self.build = "1d6", 2
     return
 
+  def updateHobby(self):
+    self.hobbyPoints = self.statDict["INT"] * 2
+    return
+  
+  def showHobbyPoints(self):
+    return "You have " + str(self.hobbyPoints) + " hobbypoints left"
+
   def setStat(self, statName, statVal):
     if statName.upper() not in self.statDict:
       return (statName + " is not a valid stat. Please choose a stat from the following:\n" +
@@ -84,6 +92,7 @@ class characterSheet:
     self.updateHP()
     self.updateMov()
     self.updateMP()
+    self.updateHobby()
     return statName.upper() + " is now set to " + str(amt)
   
   def updateMaxSan(self):
@@ -134,8 +143,24 @@ class characterSheet:
     
     self.skillDict[skill] += amt
     self.occupation.occPoints -= amt
-    return skillName + " is now at " + self.skillDict[skill]
+    return skillName + " is now at " + str(self.skillDict[skill])
+  
+  def buyHobbySkill(self, skillName, amount):
+    skill = skillName.upper()
+    try:
+      amt = abs(int(amount))
+    except:
+      return amount + " is not a number"
 
+    if amt > self.hobbyPoints:
+      return "you don't have enough occupation points!"
+
+    if self.skillDict[skill] + amt >= 100:
+      return "skills must be less than 100"
+    
+    self.skillDict[skill] += amt
+    self.hobbyPoints-= amt
+    return skillName + " is now at " + str(self.skillDict[skill])
 
   
     
