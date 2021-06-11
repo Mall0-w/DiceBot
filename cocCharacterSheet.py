@@ -100,7 +100,7 @@ class characterSheet:
   
   def setOcc(self, occName):
     try:
-      self.occupation = strToOcc(occName)(self)
+      self.occupation = strToOcc(occName.capitalize())(self)
     except:
       return occName + " is not an occupation"
 
